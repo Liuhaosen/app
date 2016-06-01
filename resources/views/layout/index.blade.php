@@ -256,6 +256,15 @@
                         </ul>
                     </li>                  
                 </ul>
+                <ul>
+                    <li>
+                        <a href="#"><i class="icon-bag"></i>商品管理</a>
+                        <ul class="closed">
+                            <li><a href="{{url('admin/goods/add')}}">商品添加</a></li>
+                            <li><a href="{{url('admin/goods/index')}}">商品列表</a></li>
+                        </ul>
+                    </li>                  
+                </ul>
             </div>         
         </div>
         

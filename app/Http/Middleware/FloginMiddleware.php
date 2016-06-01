@@ -16,11 +16,12 @@ class FloginMiddleware
     public function handle($request, Closure $next)
     {
       
-        $refer = $_SERVER['HTTP_REFERER']? $_SERVER['HTTP_REFERER']:'';
-        $url = url('login').'?redirect='.$refer;
+        $refer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER']:'';
+        
             if(session('id')){
             return $next($request);
         }else{
+            $url = url('login').'?redirect='.$refer;
             return redirect($url)->with('error','您还没有登录');
         }
     }

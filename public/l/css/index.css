@@ -1,0 +1,41 @@
+ *{
+            list-style: none;
+        }
+
+            #md12{
+                position:relative;left:140px;padding:0px;width:800px;height:600px;
+            }
+
+            .images{
+                width:800px;height:600px;padding:0px;margin:0px;cursor:pointer;
+            }
+            .images li{
+                list-style:none;height:600px;width:800px:margin:0px;display:none;
+            }
+            .images li:first-child{
+            display:block;
+              }
+
+            .num{
+                width:200px;position:absolute;left:200px;bottom:0px;height:40px;text-align:center;
+            }
+            .num li{
+               list-style: none;float:left;width:40px;cursor:pointer;color:white;
+            }
+            
+            .num .item{
+            background:red none repeat scroll 0 0;
+             }
+            .but{
+                position:absolute;bottom:350px;color:red;font-size:30px;cursor:pointer;font-family: simsun;display: none;
+            }
+            #prev{
+                left:0px;
+            }
+
+            #next{
+                left:777px;
+            }
+            #hot{
+                position:absolute;bottom:490px;left:690px;color:white;font-size:20px;cursor:pointer;font-family: simsun;border-radius:50%;background:grey;width:100px;height:100px;text-align:center;line-height: 100px;
+            }

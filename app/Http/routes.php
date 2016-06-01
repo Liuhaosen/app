@@ -32,7 +32,14 @@ Route::controller('/admin/cate','CateController');
 
 //后台文章管理
 Route::controller('/admin/article','ArticleController');
+
+//后台商品管理
+Route::controller('/admin/goods','GoodsController');
+
+
 });
+
+
 
 
 //后台登录管理
@@ -83,6 +90,39 @@ Route::get('list','ArticleController@listShow');
 
 //评论添加
 Route::post('/comment/insert','CommentController@insert')->middleware('flogin');
+
+//商城首页
+Route::get('/goods/index','GoodsController@goodsIndex');
+
+//商品的前台显示
+Route::get('/goods-{id}','GoodsController@show');
+
+//商品的列表显示
+Route::get('/goods/list','GoodsController@goodsList');
+
+//加入购物车
+Route::post('/cart/insert','CartController@insert');
+
+//购物车显示页面
+Route::get('/cart/index','CartController@index');
+
+//清除session
+Route::get('/cart/clear','CartController@clear');
+
+//删除购物车指定商品
+Route::get('/cart/delete','CartController@delete');
+
+//加入到订单
+Route::any('/order/insert','OrderController@insert')->middleware('flogin');
+
+//添加收货地址
+Route::post('/address/insert','AddressController@insert');
+
+//订单创建操作
+Route::post('/order/create','OrderController@create');
+
+//Api接口地址
+Route::controller('/api','ApiController');
 
 
 // Route::get('/aaa',function(){

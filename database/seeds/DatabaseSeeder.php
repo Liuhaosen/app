@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticleTableSeeder::class);
         //填充用户表
         $this->call(UserTableSeeder::class);
+        //填充商品表
+        $this->call(GoodsTableSeeder::class);
 
         Model::reguard();
     }

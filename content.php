@@ -63,3 +63,31 @@
 	1.在composer.json文件中  在require配置项中进行添加    ->  composer update
 	2.composer require curl/curl
 
+
+$_SERVER['HTTP_REFERER']是用来获取请求来源的url地址的
+
+
+点击按钮进行qq在线联系
+
+
+//创建模型
+	1.	删除migrations里面的所有表操作文件
+	php artisan make:model Models/Goods  -m
+	2.  设置数据库的表结构
+	3.  创建控制器   php artisan make:controller GoodsController
+	4.  php artisan migrate:refresh --seed
+	
+
+//.  范式标准
+//商品属性重要的参数 sku
+
+//快速并灵活的处理当前脚本的sql语句的方式
+//在routes.php文件中
+Event::listen('illuminate.query',function($query){
+     var_dump($query);
+});
+
+
+//在一个新的模板中创建一个用户管理
+//单独自己完成一个商品分类管理
+//开发一个模块的时候 要先创建表结构 因为这样做是最合理的

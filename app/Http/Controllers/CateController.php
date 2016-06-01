@@ -71,9 +71,7 @@ class CateController extends Controller
             $data[] = $v;
              
         }
-       return $data;
-
-     
+       return $data;   
      }
 
 
@@ -241,5 +239,61 @@ class CateController extends Controller
         }else{
             return back()->with('error','删除失败');
         }
+     }
+
+     /**
+      * 获取文章顶级分类
+      * 封装成静态,在外部可以调用
+      */
+     
+     public static function getTopCate()
+     {
+        return DB::table('cates')->where('pid',0)->get();
+     }
+
+     /**
+      * 获取商品顶级分类
+      */
+     public static function getGoodsTopCate()
+     {
+        return DB::table('gcates')->where('pid',0)->get();
+     }
+
+
+     /**
+     * 只获取分类ID 
+     */
+    public static function getCateByPid($pid)
+    {
+        //读取数据库  通过一个$pid,获取pid等于传过来的$pid的所有数据,也就是获取了id=pid的父级类下的所有数据
+        $res = DB::table('cates')->select('id','path')->where('pid','=',$pid)->get();
+        // dd($res);
+         // dd($res);
+        //遍历
+        $data = [];
+        foreach($res as $k => $v){
+          
+            $v->subs = self::getCateByPid($v->id);//$v下的sub里压入数据,数据是父id等于当前获得数据的id的所有分类.
+            $data[] = collect($v)->toArray();
+             
+        }
+       return $data;   
+     }
+
+     public static function getPathByPid($pid)
+     {
+         //读取数据库  通过一个$pid,获取pid等于传过来的$pid的所有数据,也就是获取了id=pid的父级类下的所有数据
+        $res = DB::table('cates')->select('path')->where('pid','=',$pid)->get();
+        // dd($res);
+         // dd($res);
+        //遍历
+        $data = [];
+        foreach($res as $k => $v){
+          
+            $v->subs = self::getPathByPid($v->id);//$v下的sub里压入数据,数据是父id等于当前获得数据的id的所有分类.
+            $data[] = collect($v)->toArray();
+             
+        }
+       return $data;  
      }
 }

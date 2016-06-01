@@ -144,13 +144,60 @@ class ArticleController extends Controller
             ->first();//该处的id会冲突,所以必须表名是表名.id,或者使用as别名的方法.
             //用关联表的方法,免去了使用getUsernameById的方法,从而一条语句直接查询出所需要的结果.
 
-            
+           
            // dd($arcs);
             
-            //分配变量给模版,显示文章
+            //读取文章所对应的评论信息
+             $comments = DB::table('comments')
+             ->select('users.username','comments.*')
+             ->join('users','users.id','=','comments.user_id')
+            ->where('article_id',$id)
+            ->get();
+
+            //获取推荐文章列表
+            $recs = DB::table('articles')->where('rec',1)->orderBy('id','desc')->limit(5)->get();
             
+            //获取所有的分类信息
+            $allCates = CateController::getCatesByPid(0);
+            // dd($allCates);
+            
+            //获取顶级分类,在侧边栏显示
+            return view('article.show',[
+              'arcs'=>$arcs,
+              'comments'=>$comments,
+              'cates'=>CateController::getTopCate(),
+              'recs'=>$recs,
+              'recent'=>DB::table('articles')->orderBy('id','desc')->limit(5)->get(),
+              'allCates'=>$allCates,
+              
+              ]);
+        }
+
+        /**
+         * 文章列表显示页面
+         */
+        public function listShow(Request $request)
+        {
           
-            return view('article.show',['arcs'=>$arcs]);
+          //读取数据库中的文章内容
+            $arcs = DB::table('articles')
+            ->where(function($query)use($request){
+                if($request->has('cate')){
+                    $query->where('cate_id',$request->input('cate'));
+                }
+            })
+            ->select('users.username','articles.*','cates.name')
+            ->join('users','articles.user_id','=','users.id')
+            ->join('cates','articles.cate_id','=','cates.id')
+            ->orderBy('id','desc')
+            ->paginate(7);
+        
+
+            return view('article.list',[
+              'allCates'=>CateController::getCatesByPid(0),
+              'arcs'=>$arcs,
+              'request'=>$request->all()
+              ]);
         }
 
 

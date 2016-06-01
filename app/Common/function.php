@@ -44,20 +44,27 @@
 		if($num==1){
 			$pathname='顶级类';
 		}else{
-
-			$pathname = str_repeat('　　',$num).$num.'级类';
-			
+			$pathname = str_repeat('　　',$num).$num.'级类';		
 		}
-
-		
-
 		return $pathname;
 	}
 
-
+	/**
+	 * 通过用户ID来获取用户名称
+	 * @param  [type] $uid [description]
+	 * @return [type]      [description]
+	 */
 	function getUsernameById($uid)
 	{
 		return  DB::table('users')->where('id',$uid)->first()->username;
+	}
+
+	/**
+	 *通过文章ID来获取文章的评论数
+	 */
+	function getTotalComment($aid)
+	{
+		return DB::table('comments')->where('article_id',$aid)->count();
 	}
 
  ?>

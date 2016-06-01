@@ -46,7 +46,7 @@
 			<script src="vendor/respond/respond.js"></script>
 			<script src="vendor/excanvas/excanvas.js"></script>
 		<![endif]-->
-
+		<link rel="stylesheet" type="text/css" href="/l/css/my.css">
 	</head>
 	<body>
 
@@ -90,184 +90,31 @@
 					
 						<nav class="nav-main mega-menu">
 							<ul class="nav nav-pills nav-main" id="mainMenu">
+							@foreach($allCates as $k=>$v)
 								<li class="dropdown">
-									<a class="dropdown-toggle" href="#">
-										Home
+									<a class="dropdown" href="/list?cate={{$v->id}}">
+										{{$v->name}}
 										<i class="fa fa-angle-down"></i>
 									</a>
-									<ul class="dropdown-menu">
+										@if($v->subs)
+								<ul class="dropdown-menu">							
+								@foreach($v->subs as $a=>$b)
 										<li class="dropdown-submenu">
-											<a href="#">Sliders</a>
-											<ul class="dropdown-menu">
-												<li><a href="index.html">Revolution Slider</a></li>
-												<li><a href="index-slider-2.html">Nivo Slider</a></li>
-											</ul>
+											<a href="/list?cate={{$b->id}}">{{$b->name}}</a>
+												@if($b->subs)
+												<ul class="dropdown-menu">
+													@foreach($b->subs as $c=>$d)		
+													<li><a href="/list?cate={{$d->id}}">{{$d->name}}</a></li>
+													
+													@endforeach
+												</ul>
+												@endif
 										</li>
-										<li><a href="index.html">Home - Default</a></li>
-										<li><a href="index-2.html">Home - Color</a></li>
-										<li><a href="index-3.html">Home - Light</a></li>
-										<li><a href="index-4.html">Home - Video</a></li>
-										<li><a href="index-5.html">Home - Video - Light</a></li>
-										<li><a href="index-one-page.html">One Page Website</a></li>
-									</ul>
+								@endforeach	
+								</ul>
+									@endif
 								</li>
-								<li>
-									<a href="shortcodes.html">Shortcodes</a>
-								</li>
-								<li class="dropdown">
-									<a class="dropdown-toggle" href="#">
-										About Us
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="about-us.html">About Us</a></li>
-										<li><a href="about-us-basic.html">About Us - Basic</a></li>
-										<li><a href="about-me.html">About Me</a></li>
-									</ul>
-								</li>
-								<li class="dropdown mega-menu-item mega-menu-fullwidth">
-									<a class="dropdown-toggle" href="#">
-										Features
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li>
-											<div class="mega-menu-content">
-												<div class="row">
-													<div class="col-md-3">
-														<ul class="sub-menu">
-															<li>
-																<span class="mega-menu-sub-title">Main Features</span>
-																<ul class="sub-menu">
-																	<li><a href="feature-pricing-tables.html">Pricing Tables</a></li>
-																	<li><a href="feature-icons.html">Icons</a></li>
-																	<li><a href="feature-animations.html">Animations</a></li>
-																	<li><a href="feature-typography.html">Typography</a></li>
-																	<li><a href="feature-grid-system.html">Grid System</a></li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-													<div class="col-md-3">
-														<ul class="sub-menu">
-															<li>
-																<span class="mega-menu-sub-title">Headers</span>
-																<ul class="sub-menu">
-																	<li><a href="index-header-2.html">Header Version 2</a></li>
-																	<li><a href="index-header-3.html">Header Version 3</a></li>
-																	<li><a href="index-header-4.html">Header Version 4</a></li>
-																	<li><a href="index-header-5.html">Header Version 5</a></li>
-																	<li><a href="index-header-6.html">Header Version 6</a></li>
-																	<li><a href="index-header-7.html">Header Version 7 (Below Slider)</a></li>
-																	<li><a href="index-header-8.html">Header Version 8 (Full Video)</a></li>
-																	<li><a href="index-header-signin.html">Header - Sign In / Sign Up</a></li>
-																	<li><a href="index-header-logged.html">Header - Logged</a></li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-													<div class="col-md-3">
-														<ul class="sub-menu">
-															<li>
-																<span class="mega-menu-sub-title">Footers</span>
-																<ul class="sub-menu">
-																	<li><a href="index.html#footer">Footer Version 1</a></li>
-																	<li><a href="index-footer-2.html#footer">Footer Version 2</a></li>
-																	<li><a href="index-footer-3.html#footer">Footer Version 3</a></li>
-																	<li><a href="index-footer-4.html#footer">Footer Version 4</a></li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-													<div class="col-md-3">
-														<ul class="sub-menu">
-															<li>
-																<span class="mega-menu-sub-title">Admin Extension <em class="not-included">(Not Included)</em></span>
-																<ul class="sub-menu">
-																	<li><a href="feature-admin-forms-basic.html">Forms Basic</a></li>
-																	<li><a href="feature-admin-forms-advanced.html">Forms Advanced</a></li>
-																	<li><a href="feature-admin-forms-wizard.html">Forms Wizard</a></li>
-																	<li><a href="feature-admin-forms-code-editor.html">Code Editor</a></li>
-																	<li><a href="feature-admin-tables-advanced.html">Tables Advanced</a></li>
-																	<li><a href="feature-admin-tables-responsive.html">Tables Responsive</a></li>
-																	<li><a href="feature-admin-tables-editable.html">Tables Editable</a></li>
-																	<li><a href="feature-admin-tables-ajax.html">Tables Ajax</a></li>
-																	<li><a href="feature-admin-charts.html">Charts</a></li>
-																</ul>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a class="dropdown-toggle" href="#">
-										Portfolio
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="portfolio-4-columns.html">4 Columns</a></li>
-										<li><a href="portfolio-3-columns.html">3 Columns</a></li>
-										<li><a href="portfolio-2-columns.html">2 Columns</a></li>
-										<li><a href="portfolio-lightbox.html">Portfolio Lightbox</a></li>
-										<li><a href="portfolio-timeline.html">Portfolio Timeline</a></li>
-										<li><a href="portfolio-full-width.html">Portfolio Full Width</a></li>
-										<li><a href="portfolio-single-project.html">Single Project</a></li>
-									</ul>
-								</li>
-								<li class="dropdown active">
-									<a class="dropdown-toggle" href="#">
-										Pages
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li class="dropdown-submenu">
-											<a href="#">Shop</a>
-											<ul class="dropdown-menu">
-												<li><a href="shop-full-width.html">Shop - Full Width</a></li>
-												<li><a href="shop-sidebar.html">Shop - Sidebar</a></li>
-												<li><a href="shop-product-full-width.html">Shop - Product Full Width</a></li>
-												<li><a href="shop-product-sidebar.html">Shop - Product Sidebar</a></li>
-												<li><a href="shop-cart.html">Shop - Cart</a></li>
-												<li><a href="shop-login.html">Shop - Login</a></li>
-												<li><a href="shop-checkout.html">Shop - Checkout</a></li>
-											</ul>
-										</li>
-										<li class="dropdown-submenu">
-											<a href="#">Blog</a>
-											<ul class="dropdown-menu">
-												<li><a href="blog-full-width.html">Blog Full Width</a></li>
-												<li><a href="blog-large-image.html">Blog Large Image</a></li>
-												<li><a href="blog-medium-image.html">Blog Medium Image</a></li>
-												<li><a href="blog-timeline.html">Blog Timeline</a></li>
-												<li><a href="blog-post.html">Single Post</a></li>
-											</ul>
-										</li>
-										<li><a href="page-full-width.html">Full width</a></li>
-										<li><a href="page-left-sidebar.html">Left sidebar</a></li>
-										<li><a href="page-right-sidebar.html">Right sidebar</a></li>
-										<li><a href="page-custom-header.html">Custom Header</a></li>
-										<li><a href="page-404.html">404 Error</a></li>
-										<li><a href="page-team.html">Team</a></li>
-										<li><a href="page-services.html">Services</a></li>
-										<li><a href="page-careers.html">Careers</a></li>
-										<li><a href="page-faq.html">FAQ</a></li>
-										<li><a href="page-login.html">Login / Register</a></li>
-										<li><a href="sitemap.html">Sitemap</a></li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a class="dropdown-toggle" href="#">
-										Contact Us
-										<i class="fa fa-angle-down"></i>
-									</a>
-									<ul class="dropdown-menu">
-										<li><a href="contact-us.html">Contact Us - Basic</a></li>
-										<li><a href="contact-us-advanced.php">Contact Us - Advanced</a></li>
-									</ul>
-								</li>
+							@endforeach
 							</ul>
 						</nav>
 					</div>
@@ -295,8 +142,10 @@
 				</section>
 
 				<div class="container">
-
+					
 					<div class="row">
+					@section('content')
+					<!-- 内容区 -->
 						<div class="col-md-9">
 							<div class="blog-posts single-post">
 
@@ -322,136 +171,50 @@
 										<h2><a href="blog-post.html">{{$arcs->title}}</a></h2>
 
 										<div class="post-meta">
-											<span><i class="fa fa-user"></i> By <a href="#">{{$arcs->username}}</a> </span>
-											<span><i class="fa fa-tag"></i><a href="{{url('/list?cate=25')}}">{{$arcs->name}}</a> </span>
-											<span><i class="fa fa-comments"></i> <a href="#">12 Comments</a></span>
+											<span><i class="fa fa-user"></i> By <a href="/list?user={{$arcs->user_id}}">{{$arcs->username}}</a> </span>
+											<span><i class="fa fa-tag"></i><a href="{{url('/list?cate=')}}">{{$arcs->name}}</a> </span>
+											<span><i class="fa fa-comments"></i> <a href="#">{{getTotalComment($arcs->id)}}</a></span>
 										</div>
 
 										{!!$arcs->content!!}
 
 
-									
-
-										<div class="post-block post-author clearfix">
-											<h3><i class="fa fa-user"></i>Author</h3>
-											<div class="img-thumbnail">
-												<a href="blog-post.html">
-													<img src="/l/img/avatar.jpg" alt="">
-												</a>
-											</div>
-											<p><strong class="name"><a href="#">John Doe</a></strong></p>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui. </p>
-										</div>
-
 										<div class="post-block post-comments clearfix">
-											<h3><i class="fa fa-comments"></i>Comments (3)</h3>
-
+											<h3><i class="fa fa-comments"></i>评论</h3>
 											<ul class="comments">
+											@foreach($comments as $k=>$v)
 												<li>
 													<div class="comment">
 														<div class="img-thumbnail">
 															<img class="avatar" alt="" src="/l/img/avatar-2.jpg">
-														</div>
+														</div>	
 														<div class="comment-block">
 															<div class="comment-arrow"></div>
 															<span class="comment-by">
-																<strong>John Doe</strong>
+																<strong>{{$v->username}}</strong>
 																<span class="pull-right">
-																	<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
+																	
 																</span>
 															</span>
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui.</p>
-															<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-														</div>
-													</div>
-
-													<ul class="comments reply">
-														<li>
-															<div class="comment">
-																<div class="img-thumbnail">
-																	<img class="avatar" alt="" src="/l/img/avatar-3.jpg">
-																</div>
-																<div class="comment-block">
-																	<div class="comment-arrow"></div>
-																	<span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-																	<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="comment">
-																<div class="img-thumbnail">
-																	<img class="avatar" alt="" src="/l/img/avatar-4.jpg">
-																</div>
-																<div class="comment-block">
-																	<div class="comment-arrow"></div>
-																	<span class="comment-by">
-																		<strong>John Doe</strong>
-																		<span class="pull-right">
-																			<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																		</span>
-																	</span>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae.</p>
-																	<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</li>
-												<li>
-													<div class="comment">
-														<div class="img-thumbnail">
-															<img class="avatar" alt="" src="/l/img/avatar.jpg">
-														</div>
-														<div class="comment-block">
-															<div class="comment-arrow"></div>
-															<span class="comment-by">
-																<strong>John Doe</strong>
-																<span class="pull-right">
-																	<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																</span>
-															</span>
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-															<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-														</div>
+															<p>{!!$v->content!!}</p>
+															<span class="date pull-right">5月20日</span>
+														</div>				
 													</div>
 												</li>
-												<li>
-													<div class="comment">
-														<div class="img-thumbnail">
-															<img class="avatar" alt="" src="/l/img/avatar.jpg">
-														</div>
-														<div class="comment-block">
-															<div class="comment-arrow"></div>
-															<span class="comment-by">
-																<strong>John Doe</strong>
-																<span class="pull-right">
-																	<span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
-																</span>
-															</span>
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-															<span class="date pull-right">January 12, 2013 at 1:38 pm</span>
-														</div>
-													</div>
-												</li>
+											@endforeach										
 											</ul>
-
 										</div>
 										<script type="text/javascript" charset="utf-8" src="/b/ueditor/ueditor.config.js"></script>
     									<script type="text/javascript" charset="utf-8" src="/b/ueditor/ueditor.all.min.js"> </script>
 									    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
 									    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
 									    <script type="text/javascript" charset="utf-8" src="/b/ueditor/lang/zh-cn/zh-cn.js"></script>
+									  
+
+									  
 										<div class="post-block post-leave-comment">
 											<h3>回复文章</h3>
-											<form method="post" action="{{url('/comment/insert')}}">
-											
+											<form method="post" action="{{url('/comment/insert')}}">											
 												<div class="row">
 													<div class="form-group">
 														<div class="col-md-12">
@@ -469,8 +232,8 @@
 													</div>
 												</div>
 											</form>
-				
-										</div>
+										<!-- Small modal -->
+									
 										<script type="text/javascript">
 											var ue = UE.getEditor('editor',{
 												toolbars: [
@@ -484,7 +247,11 @@
 
 							</div>
 						</div>
-					   
+					<!-- 内容区结束 -->
+					@show   
+					
+					@section('slider')
+					<!-- 侧边栏 -->
 						<div class="col-md-3">
 							<aside class="sidebar">
 
@@ -499,13 +266,11 @@
 
 								<hr />
 
-								<h4>Categories</h4>
+								<h4>分类</h4>
 								<ul class="nav nav-list primary push-bottom">
-									<li><a href="#">Design</a></li>
-									<li><a href="#">Photos</a></li>
-									<li><a href="#">Videos</a></li>
-									<li><a href="#">Lifestyle</a></li>
-									<li><a href="#">Technology</a></li>
+								@foreach($cates as $k=>$v)
+									<li><a href="/list?cate={{$v->id}}">{{$v->name}}</a></li>
+								@endforeach	
 								</ul>
 
 								<div class="tabs">
@@ -516,100 +281,44 @@
 									<div class="tab-content">
 										<div class="tab-pane active" id="popularPosts">
 											<ul class="simple-post-list">
+											@foreach($recs as $k =>$v)
 												<li>
 													<div class="post-image">
 														<div class="img-thumbnail">
-															<a href="blog-post.html">
-																<img src="/l/img/blog/blog-thumb-1.jpg" alt="">
+															<a href="/post-{{$v->id}}">
+																<img src="{{$v->pic}}" alt="" width="50">
 															</a>
 														</div>
 													</div>
 													<div class="post-info">
-														<a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+														<a href="/post-{{$v->id}}">{!!$v->title!!}</a>
 														<div class="post-meta">
-															 Jan 10, 2013
+															{{substr($v->create_at,0,10)}}
 														</div>
 													</div>
 												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail">
-															<a href="blog-post.html">
-																<img src="/l/img/blog/blog-thumb-2.jpg" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-														<div class="post-meta">
-															 Jan 10, 2013
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail">
-															<a href="blog-post.html">
-																<img src="/l/img/blog/blog-thumb-3.jpg" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Odiosters Nullam Vitae</a>
-														<div class="post-meta">
-															 Jan 10, 2013
-														</div>
-													</div>
-												</li>
+											@endforeach()
 											</ul>
 										</div>
 										<div class="tab-pane" id="recentPosts">
 											<ul class="simple-post-list">
+											@foreach($recent as $k=>$v)
 												<li>
 													<div class="post-image">
 														<div class="img-thumbnail">
-															<a href="blog-post.html">
-																<img src="/l/img/blog/blog-thumb-2.jpg" alt="">
+															<a href="/post-{{$v->id}}">
+																<img src="{{$v->pic}}" alt="">
 															</a>
 														</div>
 													</div>
 													<div class="post-info">
-														<a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+														<a href="/post-{{$v->id}}">{!!$v->title!!}</a>
 														<div class="post-meta">
-															 Jan 10, 2013
+															 {{substr($v->create_at,0,10)}}
 														</div>
 													</div>
 												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail">
-															<a href="blog-post.html">
-																<img src="/l/img/blog/blog-thumb-3.jpg" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Odiosters Nullam Vitae</a>
-														<div class="post-meta">
-															 Jan 10, 2013
-														</div>
-													</div>
-												</li>
-												<li>
-													<div class="post-image">
-														<div class="img-thumbnail">
-															<a href="blog-post.html">
-																<img src="/l/img/blog/blog-thumb-1.jpg" alt="">
-															</a>
-														</div>
-													</div>
-													<div class="post-info">
-														<a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
-														<div class="post-meta">
-															 Jan 10, 2013
-														</div>
-													</div>
-												</li>
+											@endforeach
 											</ul>
 										</div>
 									</div>
@@ -617,18 +326,18 @@
 
 								<hr />
 
-								<h4>About Us</h4>
-								<p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
-
+							
 							</aside>
 						</div>
+					<!-- 侧边栏结束 -->
+					@show
 					</div>
 
 				</div>
 
 			</div>
 
-			<footer id="footer" style="padding:0px">
+			<footer id="footer" style="padding:0px;">
 			
 				<div class="footer-copyright">
 					<div class="container">
@@ -698,6 +407,25 @@
 		
 		</script>
 		 -->
+  									
+										@if(session('info'))	
+										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+											  <div class="modal-dialog modal-sm">
+											  <div class="modal-header" style="background-color:white">
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											        <h4 class="modal-title" id="exampleModalLabel">状态</h4>
+											      </div>
+											    <div class="modal-content">
+											      
+											      <p class="bg-info" style="padding:20px">{{session('info')}}</p>
+											    </div>
+											  </div>
+											</div>
+										</div>
 
+										<script type="text/javascript">
+											$('.modal').modal();
+										</script>
+										@endif
 	</body>
 </html>

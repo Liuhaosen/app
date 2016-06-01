@@ -65,7 +65,7 @@
                    <div class="mws-form-row">
                       <label class="mws-form-label">文章内容</label>
                       <div class="mws-form-item">
-                          <script id="editor" name="content" type="text/plain" style="width:600px;height:300px;">{{$article->content}}</script>                         
+                          <script id="editor" name="content" type="text/plain" style="width:600px;height:300px;">{!!$article->content!!}</script>                         
                       </div>
                   </div>
                
