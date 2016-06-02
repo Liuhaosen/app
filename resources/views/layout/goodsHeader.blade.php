@@ -18,7 +18,7 @@
 		<nav>
 			<ul class="nav nav-pills nav-top">
 				<li>
-					<a href="#"><i class="fa fa-angle-right"></i>About Us</a>
+					<a href="#"><i class="fa fa-angle-right"></i>博客</a>
 				</li>
 				<li>
 					<a href="#"><i class="fa fa-angle-right"></i>Contact Us</a>

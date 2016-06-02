@@ -52,7 +52,7 @@
 
 		<div class="body">
 			@section('header')
-				{!!\App\Http\Controllers\LayoutController::goodsHeader()!!}
+				
 			@show
 			<div role="main" class="main">
 			@section('top')

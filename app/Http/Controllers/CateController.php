@@ -280,20 +280,4 @@ class CateController extends Controller
        return $data;   
      }
 
-     public static function getPathByPid($pid)
-     {
-         //读取数据库  通过一个$pid,获取pid等于传过来的$pid的所有数据,也就是获取了id=pid的父级类下的所有数据
-        $res = DB::table('cates')->select('path')->where('pid','=',$pid)->get();
-        // dd($res);
-         // dd($res);
-        //遍历
-        $data = [];
-        foreach($res as $k => $v){
-          
-            $v->subs = self::getPathByPid($v->id);//$v下的sub里压入数据,数据是父id等于当前获得数据的id的所有分类.
-            $data[] = collect($v)->toArray();
-             
-        }
-       return $data;  
-     }
 }

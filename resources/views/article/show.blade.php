@@ -4,7 +4,7 @@
 
 		<!-- Basic -->
 		<meta charset="utf-8">
-		<title>{{config('app.webname')}} - {{$arcs->title}}</title>		
+		<title>{{config('app.webname')}} - 博客文章-{{$arcs->title}}</title>		
 		<meta name="keywords" content="HTML5 Template" />
 		<meta name="description" content="Porto - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -140,6 +140,9 @@
 						</div>
 					</div>
 				</section>
+	@section('header')
+	{!!\App\Http\Controllers\LayoutController::header()!!}
+	@endsection
 
 				<div class="container">
 					
@@ -168,11 +171,11 @@
 
 									<div class="post-content">
 
-										<h2><a href="blog-post.html">{{$arcs->title}}</a></h2>
+										<h2><a href="#">{{$arcs->title}}</a></h2>
 
 										<div class="post-meta">
 											<span><i class="fa fa-user"></i> By <a href="/list?user={{$arcs->user_id}}">{{$arcs->username}}</a> </span>
-											<span><i class="fa fa-tag"></i><a href="{{url('/list?cate=')}}">{{$arcs->name}}</a> </span>
+											<span><i class="fa fa-tag"></i><a href="/list?name={{$arcs->name}}">{{$arcs->name}}</a> </span>
 											<span><i class="fa fa-comments"></i> <a href="#">{{getTotalComment($arcs->id)}}</a></span>
 										</div>
 
@@ -408,24 +411,24 @@
 		</script>
 		 -->
   									
-										@if(session('info'))	
-										<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-											  <div class="modal-dialog modal-sm">
-											  <div class="modal-header" style="background-color:white">
-											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											        <h4 class="modal-title" id="exampleModalLabel">状态</h4>
-											      </div>
-											    <div class="modal-content">
-											      
-											      <p class="bg-info" style="padding:20px">{{session('info')}}</p>
-											    </div>
-											  </div>
-											</div>
-										</div>
+@if(session('info'))	
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	  <div class="modal-header" style="background-color:white">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="exampleModalLabel">状态</h4>
+	      </div>
+	    <div class="modal-content">
+	      
+	      <p class="bg-info" style="padding:20px">{{session('info')}}</p>
+	    </div>
+	  </div>
+	</div>
+</div>
 
-										<script type="text/javascript">
-											$('.modal').modal();
-										</script>
-										@endif
+<script type="text/javascript">
+	$('.modal').modal();
+</script>
+@endif
 	</body>
 </html>

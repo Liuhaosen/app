@@ -20,6 +20,9 @@
 	</div>
 </section>
 @endsection
+@section('header')
+{!!\App\Http\Controllers\LayoutController::goodsHeader()!!}
+@endsection
 
 
 @section('content')

@@ -247,6 +247,7 @@ class GoodsController extends Controller
             
             $goods = Goods::join('cates','goods.cate_id','=','cates.id')
                 ->select('goods.*','cates.name')
+          
                 ->limit(5)
                 ->get();
               

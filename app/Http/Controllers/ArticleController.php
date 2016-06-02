@@ -133,10 +133,20 @@ class ArticleController extends Controller
          * 前台博客显示页面
          */
         
-        public function show($id)
+        public function show(Request $request,$id)
         {
             //读取指定id的文章信息,为了给前台模版查询出作者名和分类名
             $arcs = DB::table('articles')
+            ->where(function($query)use($request){
+                if($request->has('user')){
+                    $query->where('user_id',$request->input('user'));
+                }
+            })
+            ->where(function($query)use($request){
+                if($request->has('name')){
+                    $query->where('name',$request->input('name'));
+                }
+            })
             ->select('users.username','articles.*','cates.name')
             ->join('cates','cates.id','=','articles.cate_id')
             ->join('users','users.id','=','articles.user_id') 
@@ -178,7 +188,7 @@ class ArticleController extends Controller
          */
         public function listShow(Request $request)
         {
-          
+            
           //读取数据库中的文章内容
             $arcs = DB::table('articles')
             ->where(function($query)use($request){
@@ -186,12 +196,22 @@ class ArticleController extends Controller
                     $query->where('cate_id',$request->input('cate'));
                 }
             })
+            ->where(function($query)use($request){
+                if($request->has('user')){
+                    $query->where('user_id',$request->input('user'));
+                }
+            })
+            ->where(function($query)use($request){
+                if($request->has('name')){
+                    $query->where('name',$request->input('name'));
+                }
+            })
             ->select('users.username','articles.*','cates.name')
             ->join('users','articles.user_id','=','users.id')
             ->join('cates','articles.cate_id','=','cates.id')
             ->orderBy('id','desc')
             ->paginate(7);
-        
+        // dd($arcs);
 
             return view('article.list',[
               'allCates'=>CateController::getCatesByPid(0),

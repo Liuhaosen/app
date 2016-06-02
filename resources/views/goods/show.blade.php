@@ -20,23 +20,31 @@
 	</div>
 </section>
 @endsection
+@section('header')
+{!!\App\Http\Controllers\LayoutController::goodsHeader()!!}
+@endsection
 
 @section('content')
 <div class="col-md-9">
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6" style="margin:0px;padding:0px">
 
-			<div class="owl-carousel" data-plugin-options='{"items": 1, "autoHeight": true}'>
+			<div style="margin:0px;padding:0px" class="owl-carousel" data-plugin-options='{"items": 1, "autoHeight": true}'>
 				<div>
-					<div class="thumbnail">
-						<div class="col-md-3" style="width:100px;height:100px;display: none"></div>
-						<img alt="" class="img-responsive img-rounded" src="{{$goods->pic}}">
+					<div id="small" class="thumbnail" style="margin:0px;padding:0px">
+						
+						<img alt="" width="100%" class="img-responsive img-rounded" src="{{$goods->pic}}">
+						<div id="move" class="col-md-3" style="position:absolute;border:solid 1px red;display:none;background:url('/l/img/bg.png')"></div>
 					</div>
 					
+					
 				</div>
+				
 			</div>
-
+			<div id="big" style="border:solid 1px red;position:absolute;left:450px;top:0px;width:400px;height:400px;display:none;float:left;overflow:hidden">
+				<img id="bigPic" src="{{$goods->pic}}" alt="">	
+			</div>
 		</div>
 	
 		<div class="col-md-6">
@@ -239,6 +247,7 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" src="/l/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">	
 	//点击数量增加
 	$('.plus').click(function(){
@@ -266,6 +275,115 @@
 	})
 
 	//设置鼠标移入大图显示
+	window.onload=function(){//建议在使用jquery的时候 直接书写该方法
+		//接收两个参数 一个是鼠标放上去的事件  另一个是鼠标离开的事件
+		$('#small').hover(function(){
+			$('#move').show();
+			$('#big').show();
+		}, function(){
+			$('#move').hide();
+			$('#big').hide();
+		})
+
+		//绑定鼠标的移动事件
+		$('#small').mousemove(function(e){
+			//修改鼠标的样式
+			$(this).css('cursor','move');
+
+			//获取鼠标的位置  
+			//clientY  鼠标相对于可视区域顶部的偏移量
+			//pageY    鼠标相对于文档顶部的偏移量
+			var x = e.pageX;
+			var y = e.pageY;
+
+			//获取small div距离左侧的偏移量
+			var l = $('#small').offset().left;
+			var t = $('#small').offset().top;
+
+			//small div的宽高  
+			var sw = $('#small').width();
+			var sh = $('#small').height();
+			// //获取大图的宽高
+			var bw = $('#bigPic').width();//  x/bw = newLeft/sw
+			var bh = $('#bigPic').height();
+
+			//获取大框的宽度
+			var bigw = $('#big').width();
+			var bigh = $('#big').height();
+
+			//获取move的宽度
+			var mw = bigw*sw/bw;
+			var mh = bigh*sh/bh;
+
+			//获取移动div宽度的一半
+			var w = mw/ 2;
+			var h = mh/ 2;
+
+			//计算move div的left值
+			var newLeft = x - l - w;
+			var newTop = y - t - h;
+
+			//越界检测
+			if(newLeft < 0){
+				newLeft = 0;
+			}
+
+			if(newTop < 0){
+				newTop = 0;
+			}
+
+			//计算最大的left
+			var maxLeft = $('#small').width() - $('#move').width();
+			var maxTop = $('#small').height() - $('#move').height();
+			if(newLeft > maxLeft){
+				newLeft = maxLeft;
+			}
+
+			if(newTop > maxTop){
+				newTop = maxTop;
+			}
+
+			//设置元素的样式
+			$('#move').css('left', newLeft + 'px').css('top',newTop + 'px');
+
+			//获取元素距离左侧的偏移量  newLeft
+
+
+			var bLeft = bw * newLeft / sw;
+			var bTop = bh * newTop / sh;
+			//设置大图的样式
+			$('#bigPic').css('left', -bLeft + 'px').css('top', -bTop+'px');
+		})
 	
+		//鼠标的单击事件
+		// $('#list li img').click(function(){
+		// 	//获取src属性
+		// 	var src = $(this).attr('src');
+		// 	//设置
+		// 	$('#small img, #big img').attr('src', src);
+		// })
+
+	}
 </script>
+
+@if(session('info'))	
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	  <div class="modal-header" style="background-color:white">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="exampleModalLabel">状态</h4>
+	      </div>
+	    <div class="modal-content">
+	      
+	      <p class="bg-info" style="padding:20px">{{session('info')}}</p>
+	    </div>
+	  </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.modal').modal();
+</script>
+@endif
 @endsection
+

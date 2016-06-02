@@ -21,11 +21,8 @@ class CartController extends Controller
             if(!$this->checkExists($data['id'])){
                   //将数据压入到session中 session(['id'=>100])
             $request->session()->push('cart',$data);
-
-
-            } 
-
-            return back();
+            return back()->with('info','成功加入购物车');
+            }
         }
 
         /**
